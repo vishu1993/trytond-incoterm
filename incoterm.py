@@ -5,8 +5,10 @@
     :copyright: (c) 2014 by Openlabs Technologies & Consulting (P) Limited
     :license: BSD, see LICENSE for more details.
 """
+from trytond.pool import Pool
 from trytond.model import fields
 from trytond.pyson import Eval
+from trytond.transaction import Transaction
 
 __all__ = ['Incoterm']
 
@@ -52,6 +54,15 @@ class Incoterm(object):
     @staticmethod
     def default_year():
         return '2010'
+
+    @staticmethod
+    def default_currency():
+        Company = Pool().get('company.company')
+
+        company_id = Transaction().context.get('company')
+        if company_id:
+            return Company(company_id).currency.id
+        return None
 
     def on_change_with_currency_digits(self, name=None):
         if self.currency:
