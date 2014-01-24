@@ -16,21 +16,5 @@
             <field name="type">tree</field>
             <field name="name">stock_incoterm_tree</field>
         </record>
-        <record model="ir.action.act_window" id="act_stock_incoterm_form">
-            <field name="name">Stock Shipment Incoterm</field>
-            <field name="res_model">stock.shipment.out.incoterm</field>
-        </record>
-           <record model="ir.action.act_window.view" id="act_stock_incoterm_form_view1">
-            <field name="sequence" eval="10"/>
-            <field name="view" ref="stock_incoterm_view_tree"/>
-            <field name="act_window" ref="act_stock_incoterm_form"/>
-        </record>
-          <record model="ir.action.act_window.view" id="act_stock_incoterm_form_view2">
-            <field name="sequence" eval="20"/>
-            <field name="view" ref="stock_incoterm_view_form"/>
-            <field name="act_window" ref="act_stock_incoterm_form"/>
-        </record>
-         <menuitem parent="stock.menu_configuration" action="act_stock_incoterm_form"
-            id="menu_stock_incoterm_form"/>   
     </data>
 </tryton>

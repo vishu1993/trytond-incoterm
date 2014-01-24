@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<tree string="Sale Incoterm">
-      <field name="sale"/>
+<tree string="Sale Incoterms">
       <field name="year"/>
       <field name="abbrevation"/>
       <field name="value"/>

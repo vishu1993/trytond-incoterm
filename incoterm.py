@@ -42,6 +42,7 @@ class Incoterm(object):
         depends=['currency_digits']
     )
     currency = fields.Many2One('currency.currency', 'Currency')
+    city = fields.Char('City')
     currency_digits = fields.Function(
         fields.Integer('Value', on_change_with=['currency'],
             depends=['currency']
