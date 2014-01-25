@@ -8,4 +8,6 @@
     <field name="value"/>
     <label name="currency"/>
     <field name="currency"/>
+    <label name="city"/>
+    <field name="city"/>
 </form>
