@@ -65,7 +65,7 @@ class Incoterm(object):
             return Company(company_id).currency.id
         return None
 
-    def on_change_with_currency_digits(self, name=None):
+    def on_change_with_currency(self, name=None):
         if self.currency:
             return self.currency.digits
         return 2

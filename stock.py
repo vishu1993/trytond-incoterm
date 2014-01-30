@@ -17,7 +17,7 @@ class ShipmentOut:
     __name__ = 'stock.shipment.out'
 
     incoterms = fields.One2Many(
-        'stock.shipment.out.incoterm', 'stock_shipment',
+        'stock.shipment.out.incoterm', 'shipment_out',
         'Stock Shipment Incoterm'
     )
 
