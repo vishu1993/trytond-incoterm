@@ -12,31 +12,32 @@ from trytond.transaction import Transaction
 
 __all__ = ['Incoterm']
 
+YEARS = [
+    ('2000', '2000'),
+    ('2010', '2010'),
+]
+ABBREVATIONS = [
+    ('EXW', 'EXW - Ex Works'),
+    ('CPT', 'CPT - Carriage Paid To'),
+    ('CIP', 'CIP - Carrier and Insurance Paid to'),
+    ('DAT', 'DAT - Delivered at Terminal'),
+    ('DAP', 'DAP - Delivered at Place'),
+    ('FAS', 'FAS - Free Alongside Ship'),
+    ('FOB', 'FOB - Free on Board'),
+    ('CFR', 'CFR - Cost and Freight'),
+    ('CIF', 'CIF - Cost, Insurance and Freight'),
+    ('DAF', 'DAF - Delivered at Frontier'),
+    ('DES', 'DES - Delivered Ex Ship'),
+    ('DEQ', 'DEQ - Delievered Ex Quay'),
+    ('DDU', 'DDU - Delivered Duty Unpaid'),
+]
+
 
 class Incoterm(object):
     'Incoterm Mixin'
 
-    year = fields.Selection([
-            ('2000', '2000'),
-            ('2010', '2010'),
-        ], 'Year', required=True, select=True
-    )
-    abbrevation = fields.Selection([
-            ('EXW', 'Ex Works'),
-            ('CPT', 'Carriage Paid To'),
-            ('CIP', 'Carrier and Insurance Paid to'),
-            ('DAT', 'Delivered at Terminal'),
-            ('DAP', 'Delivered at Place'),
-            ('FAS', 'Free Alongside Ship'),
-            ('FOB', 'Free on Board'),
-            ('CFR', 'Cost and Freight'),
-            ('CIF', 'Cost, Insurance and Freight'),
-            ('DAF', 'Delivered at Frontier'),
-            ('DES', 'Delivered Ex Ship'),
-            ('DEQ', 'Delievered Ex Quay'),
-            ('DDU', 'Delivered Duty Unpaid'),
-        ], 'Abbrevation'
-    )
+    year = fields.Selection(YEARS, 'Year', select=True)
+    abbrevation = fields.Selection(ABBREVATIONS, 'Abbrevation', select=True)
     value = fields.Numeric(
         'Value', digits=(16, Eval('currency_digits', 2)),
         depends=['currency_digits']
