@@ -17,6 +17,7 @@ YEARS = [
     ('2010', '2010'),
 ]
 ABBREVATIONS = [
+    (None, ''),
     ('EXW', 'EXW - Ex Works'),
     ('CPT', 'CPT - Carriage Paid To'),
     ('CIP', 'CIP - Carrier and Insurance Paid to'),
