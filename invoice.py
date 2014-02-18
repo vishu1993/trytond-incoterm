@@ -6,6 +6,7 @@
 """
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.pool import PoolMeta
+from trytond.pyson import Eval
 from .incoterm import Incoterm
 
 __all__ = ['Invoice', 'InvoiceIncoterm']
@@ -17,7 +18,13 @@ class Invoice:
     __name__ = 'account.invoice'
 
     incoterms = fields.One2Many(
-        'account.invoice.incoterm', 'invoice', 'Invoice Incoterm'
+        'account.invoice.incoterm', 'invoice', 'Invoice Incoterm', states={
+            'readonly': Eval('state') != 'draft',
+        }, depends=['state', 'currency', 'total_amount'],
+        context={
+            'currency': Eval('currency'),
+            'value': Eval('total_amount'),
+        }
     )
 
 

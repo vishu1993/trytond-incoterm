@@ -64,6 +64,9 @@ class Incoterm(object):
     def default_currency():
         Company = Pool().get('company.company')
 
+        if 'currency' in Transaction().context:
+            return Transaction().context.get('currency')
+
         company_id = Transaction().context.get('company')
         if company_id:
             return Company(company_id).currency.id
@@ -73,3 +76,7 @@ class Incoterm(object):
         if self.currency:
             return self.currency.digits
         return 2
+
+    @staticmethod
+    def default_value():
+        return Transaction().context.get('value')

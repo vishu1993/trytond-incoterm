@@ -6,6 +6,7 @@
 """
 from trytond.model import ModelView, ModelSQL, fields
 from trytond.pool import PoolMeta
+from trytond.pyson import Eval
 from incoterm import Incoterm
 
 __all__ = ['ShipmentOut', 'ShipmentOutIncoterm']
@@ -18,7 +19,9 @@ class ShipmentOut:
 
     incoterms = fields.One2Many(
         'stock.shipment.out.incoterm', 'shipment_out',
-        'Stock Shipment Incoterm'
+        'Stock Shipment Incoterm', states={
+            'readonly': Eval('state') != 'draft',
+        }, depends=['state'],
     )
 
 
