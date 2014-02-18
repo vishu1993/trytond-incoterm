@@ -37,14 +37,16 @@ ABBREVATIONS = [
 class Incoterm(object):
     'Incoterm Mixin'
 
-    year = fields.Selection(YEARS, 'Year', select=True)
-    abbrevation = fields.Selection(ABBREVATIONS, 'Abbrevation', select=True)
+    year = fields.Selection(YEARS, 'Year', select=True, required=True)
+    abbrevation = fields.Selection(
+        ABBREVATIONS, 'Abbrevation', select=True, required=True
+    )
     value = fields.Numeric(
         'Value', digits=(16, Eval('currency_digits', 2)),
         depends=['currency_digits']
     )
     currency = fields.Many2One('currency.currency', 'Currency')
-    city = fields.Char('City')
+    city = fields.Char('City', required=True)
     currency_digits = fields.Function(
         fields.Integer('Value', on_change_with=['currency'],
             depends=['currency']
